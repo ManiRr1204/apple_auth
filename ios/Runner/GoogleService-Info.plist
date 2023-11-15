@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>823648655832-h2hv602hmh4vc5l7rfh602i3n7ma7e55.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.823648655832-h2hv602hmh4vc5l7rfh602i3n7ma7e55</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>823648655832-fj29d48r0k99n78cp7q8065a8msthtkk.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDHL39bmLubZ9EIFGHCnI3dt_-dsEUjDS8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>823648655832</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.arjavatech.brightbrains</string>
+	<key>PROJECT_ID</key>
+	<string>bright-brains-app</string>
+	<key>STORAGE_BUCKET</key>
+	<string>bright-brains-app.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:823648655832:ios:b078efddfbcfaf19d4faad</string>
+</dict>
+</plist>
