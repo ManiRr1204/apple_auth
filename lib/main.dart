@@ -1,3 +1,61 @@
+// import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:flutter/material.dart';
+// import 'package:firebase_core/firebase_core.dart';
+// import 'package:flutter_apple_signin/providers/authentication_provider.dart';
+// import 'package:flutter_apple_signin/screens/login_screen.dart';
+// import 'package:flutter_apple_signin/screens/logout_screen.dart';
+// import 'package:provider/provider.dart';
+
+// Future<void> main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await Firebase.initializeApp();
+//   runApp(MyApp());
+// }
+
+// class MyApp extends StatelessWidget {
+//   // This widget is the root of your application.
+//   @override
+//   Widget build(BuildContext context) {
+//     return MultiProvider(
+//       providers: [
+//         ChangeNotifierProvider(
+//           create: (ctx) => AuthenticationProvider(FirebaseAuth.instance),
+//         ),
+//         StreamProvider(
+//           create: (BuildContext context) {
+//             return context.read<AuthenticationProvider>().authStateChanges;
+//           },
+//          initialData: null, 
+//         )
+//       ],
+//       child: MaterialApp(
+//         title: 'Flutter Demo',
+//         theme: ThemeData(
+//           primarySwatch: Colors.purple,
+//           hintColor: Colors.deepOrange,
+//           visualDensity: VisualDensity.adaptivePlatformDensity,
+//         ),
+//         home: MyHomePage(),
+//         routes: {},
+//       ),
+//     );
+//   }
+// }
+
+// class MyHomePage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     final firebaseUser = context.watch<User>();
+//     return Scaffold(
+//         appBar: AppBar(
+//           title: Text('Apple Sign In'),
+//         ),
+//         // ignore: unnecessary_null_comparison
+//         body: firebaseUser != null ? LogoutPage() : LoginPage());
+//   }
+// }
+
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -13,7 +71,6 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -21,10 +78,11 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (ctx) => AuthenticationProvider(FirebaseAuth.instance),
         ),
-        StreamProvider(
+        StreamProvider<User?>(
           create: (BuildContext context) {
             return context.read<AuthenticationProvider>().authStateChanges;
-          }, initialData: null,
+          },
+          initialData: null,
         )
       ],
       child: MaterialApp(
@@ -44,11 +102,12 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final firebaseUser = context.watch<User>();
+    final firebaseUser = context.watch<User?>();
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Apple Sign In'),
-        ),
-        body: firebaseUser != null ? LogoutPage() : LoginPage());
+      appBar: AppBar(
+        title: Text('Apple Sign In'),
+      ),
+      body: firebaseUser != null ? LogoutPage() : LoginPage(),
+    );
   }
 }
