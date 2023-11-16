@@ -59,6 +59,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_apple_signin/loginCredentials.dart';
 import 'package:flutter_apple_signin/providers/authentication_provider.dart';
 import 'package:flutter_apple_signin/screens/login_screen.dart';
 import 'package:flutter_apple_signin/screens/logout_screen.dart';
@@ -99,15 +100,68 @@ class MyApp extends StatelessWidget {
   }
 }
 
+// class MyHomePage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     final firebaseUser = context.watch<User?>();
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Apple Sign In'),
+//       ),
+//       body: firebaseUser != null ? LogoutPage() : LoginPage(),
+//     );
+//   }
+// }
+
 class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final firebaseUser = context.watch<User?>();
     return Scaffold(
       appBar: AppBar(
         title: Text('Apple Sign In'),
       ),
-      body: firebaseUser != null ? LogoutPage() : LoginPage(),
+      body: StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasData && snapshot.data != null) {
+            User? user = snapshot.data;
+            return UserDetailsWidget(user: user!);
+          } else {
+            return LoginPage(); // Or any other login handling widget
+          }
+        },
+      ),
     );
   }
 }
+
+class UserDetailsWidget extends StatelessWidget {
+  final User user;
+
+  const UserDetailsWidget({Key? key, required this.user}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text("Name : ${user.displayName ?? "N/A"}"),
+          Text('Photo URL: ${user.photoURL ?? "N/A"}'),
+          Text('Email: ${user.email ?? "N/A"}'),
+          ElevatedButton(
+            onPressed: () {
+              // Handle sign out here using context
+              context.read<AuthenticationProvider>().signOut();
+            },
+            child: Text('Sign Out'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+

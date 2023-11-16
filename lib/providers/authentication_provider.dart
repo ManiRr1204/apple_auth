@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:crypto/crypto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_apple_signin/loginCredentials.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 // class AuthenticationProvider with ChangeNotifier {
@@ -137,9 +138,12 @@ class AuthenticationProvider with ChangeNotifier {
             '${appleCredential.givenName} ${appleCredential.familyName}';
         final userEmail =
             appleCredential.email ?? ''; // Apple may not provide an email
-
+        userEmailAddress = userEmail;
+        userName = displayName;
         print('User Display Name: $displayName');
         print('User Email: $userEmail');
+        print("appleCredential : $appleCredential");
+        print("Image Url : ${appleCredential.userIdentifier}");
 
         // Update user profile
         await firebaseUser.updateProfile(displayName: displayName);
