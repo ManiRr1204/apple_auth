@@ -3,7 +3,9 @@ import 'dart:math';
 
 import 'package:crypto/crypto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_apple_signin/html_shim.dart';
 import 'package:flutter_apple_signin/loginCredentials.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
@@ -119,7 +121,20 @@ class AuthenticationProvider with ChangeNotifier {
           AppleIDAuthorizationScopes.email,
           AppleIDAuthorizationScopes.fullName,
         ],
-        nonce: nonce,
+        webAuthenticationOptions: WebAuthenticationOptions(
+                    // TODO: Set the `clientId` and `redirectUri` arguments to the values you entered in the Apple Developer portal during the setup
+                    clientId:
+                        'de.lunaone.flutter.signinwithappleexample.service',
+
+                    redirectUri:
+                        // For web your redirect URI needs to be the host of the "current page",
+                        // while for Android you will be using the API server that redirects back into your app via a deep link
+                        kIsWeb
+                            ? Uri.parse('https://${window.location.host}/')
+                            : Uri.parse(
+                                'https://flutter-sign-in-with-apple-example.glitch.me/callbacks/sign_in_with_apple',
+                              ),
+                  ),nonce: nonce,
       );
       print("getting apple credentials");
       print('Apple Authorization Code: ${appleCredential.authorizationCode}');

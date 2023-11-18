@@ -25,7 +25,7 @@
 //           create: (BuildContext context) {
 //             return context.read<AuthenticationProvider>().authStateChanges;
 //           },
-//          initialData: null, 
+//          initialData: null,
 //         )
 //       ],
 //       child: MaterialApp(
@@ -55,8 +55,8 @@
 //   }
 // }
 
-
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_apple_signin/loginCredentials.dart';
@@ -67,7 +67,19 @@ import 'package:provider/provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  if (kIsWeb) {
+    await Firebase.initializeApp(
+        options: const FirebaseOptions(
+            apiKey: "AIzaSyA85U-XbHimUx_K1O2LRVvCZc51DWGtBh8",
+            authDomain: "bright-brains-app.firebaseapp.com",
+            projectId: "bright-brains-app",
+            storageBucket: "bright-brains-app.appspot.com",
+            messagingSenderId: "823648655832",
+            appId: "1:823648655832:web:f0f01b2618ec2d51d4faad",
+            measurementId: "G-W0SZ8HXBSM"));
+  } else {
+    await Firebase.initializeApp();
+  }
   runApp(MyApp());
 }
 
@@ -118,13 +130,13 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Apple Sign In'),
+        title: const Text('Apple Sign In'),
       ),
       body: StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasData && snapshot.data != null) {
             User? user = snapshot.data;
             return UserDetailsWidget(user: user!);
@@ -144,7 +156,6 @@ class UserDetailsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -157,11 +168,10 @@ class UserDetailsWidget extends StatelessWidget {
               // Handle sign out here using context
               context.read<AuthenticationProvider>().signOut();
             },
-            child: Text('Sign Out'),
+            child: const Text('Sign Out'),
           ),
         ],
       ),
     );
   }
 }
-

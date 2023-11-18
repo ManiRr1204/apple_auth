@@ -1,0 +1,70 @@
+{
+  "project_info": {
+    "project_number": "823648655832",
+    "project_id": "bright-brains-app",
+    "storage_bucket": "bright-brains-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:823648655832:android:c670b3f79e950202d4faad",
+        "android_client_info": {
+          "package_name": "com.arjavatech.brightbrains"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "823648655832-fj29d48r0k99n78cp7q8065a8msthtkk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.arjavatech.brightbrains",
+            "certificate_hash": "a9cf5658ad91dba26b7e47cd722b47ebf33d776b"
+          }
+        },
+        {
+          "client_id": "823648655832-lrlhva4pa0hjurtr35b1v290bjpcl2f4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.arjavatech.brightbrains",
+            "certificate_hash": "c8755cdb58edf88d7915ba59309e8945a96aad57"
+          }
+        },
+        {
+          "client_id": "823648655832-sgefkdubmltg328nhelu0v8f09vidgrf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.arjavatech.brightbrains",
+            "certificate_hash": "3ba6595e978f3d6d59d829bcee4dee5c8c1931f9"
+          }
+        },
+        {
+          "client_id": "823648655832-6e2grb0v4lm4g50v4ukmbsahni53dgu2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKtLWyFTkuTghhzsZSWsYe7IsVguVPbSE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "823648655832-6e2grb0v4lm4g50v4ukmbsahni53dgu2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "823648655832-0usggj753ud9obo23ganqvs2lvei4247.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.cognitiveGameApp.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
